@@ -1,4 +1,4 @@
-// Step 1: Read the JSON file
+
 const fs = require('fs');
 const data = JSON.parse(fs.readFileSync('data.json', 'utf-8'));
 
@@ -17,7 +17,7 @@ function decodeValue(base, value) {
   return result;
 }
 
-// Step 3: Prepare k points from JSON
+
 const { n, k } = data.keys;
 const points = [];
 Object.keys(data).forEach(key => {
@@ -29,11 +29,11 @@ Object.keys(data).forEach(key => {
   }
 });
 
-// Sort points by x and take first k
+
 points.sort((a, b) => (a.x < b.x ? -1 : 1));
 const usedPoints = points.slice(0, k);
 
-// Step 4: Lagrange interpolation at x = 0 to find constant c
+
 function findConstant(points) {
   let c = 0n;
   for (let i = 0; i < points.length; i++) {
@@ -52,5 +52,6 @@ function findConstant(points) {
 
 const c = findConstant(usedPoints);
 
-// Step 5: Print only c
+
 console.log(c.toString());
+
